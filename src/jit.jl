@@ -7,6 +7,8 @@ export cufunction
 # main code generation functions
 #
 
+Cassette.@context GPUctx
+
 function module_setup(mod::LLVM.Module)
     # NOTE: NVPTX::TargetMachine's data layout doesn't match the NVPTX user guide,
     #       so we specify it ourselves

@@ -1,9 +1,8 @@
-__precompile__()
-
 module CUDAnative
 
 using CUDAapi
 using CUDAdrv
+using Cassette
 
 using LLVM
 using LLVM.Interop
