@@ -49,6 +49,10 @@ function raise_exception(insblock::BasicBlock, ex::Value)
 end
 
 function irgen(@nospecialize(func), @nospecialize(tt))
+    # patch the IR
+    ctx = GPUctx(func)
+    func = Cassette.Overdub(Cassette.Execute(), func, Cassette.Settings(ctx))
+
     # collect all modules of IR
     function hook_module_setup(ref::Ptr{Void})
         ref = convert(LLVM.API.LLVMModuleRef, ref)
