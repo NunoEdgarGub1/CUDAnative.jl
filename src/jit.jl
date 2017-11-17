@@ -51,7 +51,9 @@ end
 function irgen(@nospecialize(func), @nospecialize(tt))
     # patch the IR
     ctx = GPUctx(func)
+    info("Original IR for $func, $tt\n"); println(code_warntype(func, tt))
     func = Cassette.Overdub(Cassette.Execute(), func, Cassette.Settings(ctx))
+    info("Overdubbed IR for $func, $tt\n"); println(code_warntype(func, tt))
 
     # collect all modules of IR
     function hook_module_setup(ref::Ptr{Void})
